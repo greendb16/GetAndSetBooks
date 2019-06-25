@@ -1,3 +1,7 @@
+
+
+import java.util.ArrayList;
+
 public class Book {
 
     private String bookTitle;
@@ -5,6 +9,11 @@ public class Book {
     private String description;
     private double price;
     private boolean inStock;
+
+    private ArrayList<Book> bookList = new ArrayList<>();
+    private ArrayList<Book> checkOut = new ArrayList<>();
+
+
 
     public Book(){
 
@@ -60,4 +69,24 @@ public class Book {
     public void setInStock(boolean inStock) {
         this.inStock = inStock;
     }
+
+
+    public String returnListTitles(ArrayList<Book> bookList){
+        setBookList(bookList);
+        String print = "";
+        for(Book b: getBookList()){
+           print += b.getBookTitle() + ", ";
+        }
+        return print;
+    }
+
+
+    public ArrayList<Book> getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(ArrayList<Book> bookList) {
+        this.bookList = bookList;
+    }
+
 }
