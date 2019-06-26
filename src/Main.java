@@ -36,11 +36,11 @@ public class Main {
         gallery.add(book3);
         descripContents.put(3,false);
 
-        Book book4 = new Book("Alice in Wonderland", "C.S. Lewis", "Bunny Rabbits and Queens", 17.35, true, "Fant1006");
+        Book book4 = new Book("Alice in Wonderland", "C.S. Lewis", "Bunny Rabbits and Queens", 17.35, false, "Fant1006");
         gallery.add(book4);
         descripContents.put(4,false);
 
-        Book book5 = new Book("Pokemon 2: The quest for more pokemon", "N. Tendo", "Now with more Pokemon", 23.36,true,"Classics1151");
+        Book book5 = new Book("Pokemon 2: The quest for more pokemon", "N. Tendo", "Now with more Pokemon", 23.36,false,"Classics1151");
         gallery.add(book5);
         descripContents.put(5,false);
 
@@ -56,7 +56,7 @@ public class Main {
         gallery.add(book8);
         descripContents.put(8,false);
 
-        Book book9 = new Book("Automate the Boring Stuff with Python", "Al Sweigart", "Fun with Python", 10.50, true, "Python1004");
+        Book book9 = new Book("Automate the Boring Stuff with Python", "Al Sweigart", "Fun with Python", 10.50, false, "Python1004");
         gallery.add(book9);
         descripContents.put(9,false);
 

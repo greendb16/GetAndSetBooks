@@ -45,22 +45,6 @@ public class Book {
         Book.input = input;
     }
 
-    public static Double getMax() {
-        return max;
-    }
-
-    public static void setMax(Double max) {
-        Book.max = max;
-    }
-
-    public static Double getMin() {
-        return min;
-    }
-
-    public static void setMin(Double min) {
-        Book.min = min;
-    }
-
     public static String getIndex() {
         return index;
     }
@@ -152,9 +136,12 @@ public class Book {
 
     //Create Display text string from variables
     private String getDisplayText() {
-        return "Author: " + author + "\nTitle: " + bookTitle + "\nDescription: " + description;
+        if (inStock) {
+            return "Author: " + author + "\nTitle: " + bookTitle + "\nDescription: " + description + "\nIn Stock: Yes";
+        } else {
+            return "Author: " + author + "\nTitle: " + bookTitle + "\nDescription: " + description + "\nIn Stock: No";
+        }
     }
-
 
     //Return List of Available tiltes
     public String returnListTitles(ArrayList<Book> bookList) {
@@ -230,10 +217,10 @@ public class Book {
             if (descripFinal.get(b)) {
                 print += bookList.get(b).getDisplayText() + ", ";
             }
-
         }
         return print;
     }
+
     //Return books based on SKU
     public String returnListSKU(ArrayList<Book> bookList) {
         setBookList(bookList);
