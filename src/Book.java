@@ -16,16 +16,15 @@ public class Book {
     private static Double max;
     private static Double min;
     private static String index;
-    private static ArrayList <String> descriptionInput = new ArrayList<>();
-    private static ArrayList <String> descriptionIndex = new ArrayList<>();
-    private static HashMap <Integer, Boolean> descripFinal = new HashMap<>();
+    private static ArrayList<String> descriptionInput = new ArrayList<>();
+    private static ArrayList<String> descriptionIndex = new ArrayList<>();
+    private static HashMap<Integer, Boolean> descripFinal = new HashMap<>();
 
     private static ArrayList<Book> bookList = new ArrayList<>();
     private ArrayList<Book> checkOut = new ArrayList<>();
 
 
-
-    public Book(){
+    public Book() {
 
     }
 
@@ -94,10 +93,11 @@ public class Book {
         Book.descripFinal = descripFinal;
     }
 
-    public String getDisplayText(){
+    private String getDisplayText() {
         return "Author: " + author + "\nTitle: " + bookTitle + "\nDescription: " + description;
     }
-    public String getBookTitle(){
+
+    private String getBookTitle() {
         return bookTitle;
     }
 
@@ -137,6 +137,7 @@ public class Book {
     public void setInStock(boolean inStock) {
         this.inStock = inStock;
     }
+
     public ArrayList<Book> getBookList() {
         return bookList;
     }
@@ -153,73 +154,81 @@ public class Book {
         this.bookList = bookList;
     }
 
-    public String returnListTitles(ArrayList<Book> bookList){
+    public String returnListTitles(ArrayList<Book> bookList) {
         setBookList(bookList);
         String print = "";
-        for(Book b: getBookList()){
-           print += b.getBookTitle() + ", ";
+        for (Book b : getBookList()) {
+            print += b.getBookTitle() + ", ";
         }
         return print;
     }
 
-    public String returnListAuthors (ArrayList<Book> bookList){
+    public String returnListAuthors(ArrayList<Book> bookList) {
         setBookList(bookList);
         String print = "";
-        for(Book b: getBookList()){
+        for (Book b : getBookList()) {
             print += b.getAuthor() + ", ";
         }
         return print;
     }
 
-    public String returnListPrice(ArrayList<Book> bookList){
+    public String returnListPrice(ArrayList<Book> bookList) {
         setBookList(bookList);
         String print = "";
-        for(Book b: getBookList()){
-            if(b.getPrice()< max &&  b.getPrice()>min){
-                print += "\n" +b.getDisplayText() + "\n";
+        for (Book b : getBookList()) {
+            if (b.getPrice() < max && b.getPrice() > min) {
+                print += "\n" + b.getDisplayText() + "\n";
             }
 
         }
         return print;
     }
 
-    public String returnListDescription(ArrayList<Book> bookList, HashMap<Integer, Boolean> descripFinal){
+    public String returnListDescription(ArrayList<Book> bookList, HashMap<Integer, Boolean> descripFinal) {
         setBookList(bookList);
         String print = "";
-        for(int y:descripFinal.keySet()){
-            descripFinal.put(y,false);
+
+        for (int y : descripFinal.keySet()) {
+//            b = false;
+            descripFinal.replace(y, false);
         }
 
-        for(String word: input.split(" ")){
+        for (String word : input.split(" ")) {
             descriptionInput.add(word);
         }
-        for(int i=0; i<bookList.size(); i++){
+
+        for (int i = 0; i < bookList.size(); i++) {
             index = bookList.get(i).getDescription().toLowerCase();
-            for(String word : (index).split(" ")){
+
+            for (String word : index.split(" ")) {
                 descriptionIndex.add(word);
+            }
 
 
-                for(int j=0;j<descriptionInput.size();j++){
-                    if(descriptionIndex.contains(descriptionInput.get(j))) {
-                        descripFinal.put(i, true);
-                    }
+            for (int j = 0; j < descriptionInput.size(); j++) {
+                if (descriptionIndex.contains(descriptionInput.get(j))) {
+                    descripFinal.replace(i, true);
+
+//                    System.out.println("test");
                 }
             }
         }
-        for(int b=0; b<descripFinal.size(); b++) {
-            if (descripFinal.get(b)){
+
+        for (int b = 0; b < descripFinal.size(); b++) {
+            if (descripFinal.get(b)) {
                 print += bookList.get(b).getDisplayText() + ", ";
             }
 
         }
         return print;
     }
-    public String returnListSKU(ArrayList<Book> bookList){
+
+    public String returnListSKU(ArrayList<Book> bookList) {
         setBookList(bookList);
         String print = "";
-        for(Book b: getBookList()){
-            if(b.getsKU().toLowerCase().equals(input)){
-                print += "\n" +b.getDisplayText() + "\n";
+        for (Book b : getBookList()) {
+            if (b.getsKU().toLowerCase().equals(input)) {
+                print += "\n" + b.getDisplayText() + "\n";
             }
 
         }
@@ -227,17 +236,12 @@ public class Book {
     }
 
 
-
-
-
-
-
-    public String browseSelection(String choice, ArrayList<Book> bookList, HashMap <Integer, Boolean> descripFinal, Scanner scan){
+    public String browseSelection(String choice, ArrayList<Book> bookList, HashMap<Integer, Boolean> descripFinal, Scanner scan) {
 
 
         String answer = "";
 
-        switch(choice){
+        switch (choice) {
 
             case "titles":
                 answer = returnListTitles(bookList);
@@ -261,7 +265,7 @@ public class Book {
             case "description":
 
                 System.out.println("What are some key words you are looking for?");
-                input =scan.nextLine().toLowerCase();
+                setInput(scan.nextLine().toLowerCase());
                 answer = returnListDescription(bookList, descripFinal);
                 break;
             case "sku":
@@ -275,7 +279,8 @@ public class Book {
                 answer = "That is not an option.";
                 break;
 
-    }
-    return answer;
+        }
+        return answer;
 
-}}
+    }
+}
