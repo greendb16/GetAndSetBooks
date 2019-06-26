@@ -180,7 +180,7 @@ public class Book {
     public String returnListDescription(ArrayList<Book> bookList, HashMap<Integer, Boolean> descripFinal) {
         setBookList(bookList);
         String print = "";
-
+        descriptionInput.clear();
 
         //Reset Hashmap for repeat queries
         for (int y : descripFinal.keySet()) {
@@ -194,7 +194,9 @@ public class Book {
 
         //Search each book for key words
         for (int i = 0; i < bookList.size(); i++) {
+
             index = bookList.get(i).getDescription().toLowerCase();
+            descriptionIndex.clear();
 
 
             // Create ArrayList from book description words
@@ -205,17 +207,15 @@ public class Book {
             //Compare input Arraylist and description Arraylist,  setting Hashmap with key = Book#(i) to true
             for (int j = 0; j < descriptionInput.size(); j++) {
                 if (descriptionIndex.contains(descriptionInput.get(j))) {
-                    descripFinal.replace(i, true);
-//                    System.out.println("test");
+                    descripFinal.replace(i+1, true);
                 }
             }
         }
 
-
         //Create Return string form true hashmaps
         for (int b = 0; b < descripFinal.size(); b++) {
-            if (descripFinal.get(b)) {
-                print += bookList.get(b).getDisplayText() + ", ";
+            if (descripFinal.get(b+1)) {
+                print += "\n"+bookList.get(b).getDisplayText() + "\n";
             }
         }
         return print;

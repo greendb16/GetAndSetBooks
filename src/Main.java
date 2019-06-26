@@ -27,7 +27,6 @@ public class Main {
         gallery.add(book1);
         descripContents.put(1,false);
 
-
         Book book2 = new Book("Lord of the Rings", "Tolkien", "Hobbits and Rings and Orcs oh my!", 21.95, true,"Fant1001");
         gallery.add(book2);
         descripContents.put(2,false);
