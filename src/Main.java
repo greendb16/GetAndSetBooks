@@ -15,6 +15,9 @@ public class Main {
 
     public static void main(String[]args){
 
+
+
+        //
        Book book1 = new Book();
         book1.setAuthor("J.K. Rowling");
         book1.setBookTitle("Harry Potter");
@@ -66,18 +69,16 @@ public class Main {
         descripContents.put(11,false);
 
         while(!input.equals("n")) {
+            //Prompt for browse type
             System.out.println("\nHow would you like to browse? (Titles, Authors, Price, Description, or SKU)?");
             input = scan.nextLine().toLowerCase();
 
+            //return query
             System.out.println(book1.browseSelection(input, gallery, descripContents, scan));
+
+            //Ask to loop
             System.out.println("\nWould you like to search again? (Y/N)");
             input = scan.nextLine().toLowerCase();
         }
-
-
-
-
     }
-
-
 }

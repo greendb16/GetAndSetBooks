@@ -93,10 +93,6 @@ public class Book {
         Book.descripFinal = descripFinal;
     }
 
-    private String getDisplayText() {
-        return "Author: " + author + "\nTitle: " + bookTitle + "\nDescription: " + description;
-    }
-
     private String getBookTitle() {
         return bookTitle;
     }
@@ -154,6 +150,13 @@ public class Book {
         this.bookList = bookList;
     }
 
+    //Create Display text string from variables
+    private String getDisplayText() {
+        return "Author: " + author + "\nTitle: " + bookTitle + "\nDescription: " + description;
+    }
+
+
+    //Return List of Available tiltes
     public String returnListTitles(ArrayList<Book> bookList) {
         setBookList(bookList);
         String print = "";
@@ -163,6 +166,7 @@ public class Book {
         return print;
     }
 
+    //Return List of available Authors
     public String returnListAuthors(ArrayList<Book> bookList) {
         setBookList(bookList);
         String print = "";
@@ -172,6 +176,7 @@ public class Book {
         return print;
     }
 
+    //Return Books based on price input
     public String returnListPrice(ArrayList<Book> bookList) {
         setBookList(bookList);
         String print = "";
@@ -184,36 +189,43 @@ public class Book {
         return print;
     }
 
+    //Return books based on key words in books description
     public String returnListDescription(ArrayList<Book> bookList, HashMap<Integer, Boolean> descripFinal) {
         setBookList(bookList);
         String print = "";
 
+
+        //Reset Hashmap for repeat queries
         for (int y : descripFinal.keySet()) {
-//            b = false;
-            descripFinal.replace(y, false);
+                descripFinal.replace(y,false);
         }
 
+        //Create Array List from input words
         for (String word : input.split(" ")) {
             descriptionInput.add(word);
         }
 
+        //Search each book for key words
         for (int i = 0; i < bookList.size(); i++) {
             index = bookList.get(i).getDescription().toLowerCase();
 
+
+            // Create ArrayList from book description words
             for (String word : index.split(" ")) {
                 descriptionIndex.add(word);
             }
 
-
+            //Compare input Arraylist and description Arraylist,  setting Hashmap with key = Book#(i) to true
             for (int j = 0; j < descriptionInput.size(); j++) {
                 if (descriptionIndex.contains(descriptionInput.get(j))) {
                     descripFinal.replace(i, true);
-
 //                    System.out.println("test");
                 }
             }
         }
 
+
+        //Create Return string form true hashmaps
         for (int b = 0; b < descripFinal.size(); b++) {
             if (descripFinal.get(b)) {
                 print += bookList.get(b).getDisplayText() + ", ";
@@ -222,7 +234,7 @@ public class Book {
         }
         return print;
     }
-
+    //Return books based on SKU
     public String returnListSKU(ArrayList<Book> bookList) {
         setBookList(bookList);
         String print = "";
@@ -235,7 +247,7 @@ public class Book {
         return print;
     }
 
-
+    //Determine how to browse inventory
     public String browseSelection(String choice, ArrayList<Book> bookList, HashMap<Integer, Boolean> descripFinal, Scanner scan) {
 
 
@@ -268,6 +280,8 @@ public class Book {
                 setInput(scan.nextLine().toLowerCase());
                 answer = returnListDescription(bookList, descripFinal);
                 break;
+
+
             case "sku":
                 System.out.println("Enter an SKU number:");
                 input = scan.nextLine().toLowerCase();
